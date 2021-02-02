@@ -15,22 +15,30 @@ def remove_third_char(string: str) -> str:
 
 
 def replace_char(string: str, old_char: str, new_char: str) -> str:
-    place_char = string.find(old_char)
-    new_string = string[:place_char] + new_char + string[place_char + 1:]
+    for i in range(len(string)):
+        if string[i] == old_char:
+            new_string = string[:i] + new_char + string[i + 1:]
 
     return new_string
 
 
 def get_number_of_char(string: str, char: str) -> int:
     nombre_daparences = 0
-    for chr in string:
-        if string.find(char) != -1:
+    for c in string:
+        if c == char:
             nombre_daparences += 1
 
     return nombre_daparences
 
+
 def get_number_of_words(sentence: str, word: str) -> int:
-    pass
+    occurence = 0
+    sentence = sentence.split()
+
+    for i in sentence:
+        if i == word:
+            occurence += 1
+    return occurence
 
 
 def main() -> None:
@@ -47,7 +55,7 @@ def main() -> None:
     print(
         f"On remplace le caratère w par le caractère z dans la chaine: {chaine}. Résultat : {replace_char(chaine, 'w', 'z')}")
 
-    print(f"Le nombre d'occurrence de l dans hello est : {get_number_of_char(chaine, 'l')}")
+    print(f"Le nombre d'occurrence de l dans hello world est : {get_number_of_char(chaine, 'l')}")
 
     chaine = "Baby shark doo doo doo doo doo doo"
     print(f"L'occurence du mot doo dans la chaine {chaine} est: {get_number_of_words(chaine, 'doo')}")
